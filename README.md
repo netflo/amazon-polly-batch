@@ -43,6 +43,25 @@ id3v2 -A 'Album Name' -t 'Song Title' -a 'Artist Name' -y 2017 -g 28 my-book.mp3
 # Step 7: let's play the .mp3 file!
 ```
 
+
+to replace the audio of an video file ...
+
+You will want to copy the video stream without re-encoding to save a lot of time but re-encoding the audio might help to prevent incompatibilities:
+
+ffmpeg -i v.mp4 -i a.wav -c:v copy -map 0:v:0 -map 1:a:0 new.mp4
+
+-map 0:v:0 maps the first (index 0) video stream from the input to the first (index 0) video stream in the output.
+
+-map 1:a:0 maps the second (index 1) audio stream from the input to the first (index 0) audio stream in the output.
+
+If the audio is longer than the video, you will want to add -shortest before the output file name.
+
+Not specifying an audio codec, will automatically select a working one. You can specify one by for example adding -c:a libvorbis after -c:v copy.
+
+
+
+
+
 Description
 ===========
 
@@ -114,7 +133,16 @@ Installation
     sudo dnf install id3v2
     ```
 
+
+
+
+
+
+
+
 [Back to TOC](#table-of-contents)
+
+
 
 TODO
 ====
