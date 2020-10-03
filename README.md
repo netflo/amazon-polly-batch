@@ -87,7 +87,7 @@ Installation
 2. Install the AWS SDK for Python:
 
     ```bash
-    pip install boto3
+    pip install boto3  ===>   python -m pip install --user boto3
     ```
 
     Configure the AWS credentials file in `~/.aws/credentials`.
